@@ -45,10 +45,40 @@ void printNodes(){
 
 }
 
+void displayMenu(){
+
+    printf("\n\n~=~=~=MENU~=~=~=\n0)Add node\n1)Print nodes\n2)Exit program\n\n Choice :  ");
+
+}
+
+
 
 int main(void){
 
     int choice = 0;
+    int nodeValue = 0;
+
+
+
+    while(1){
+
+        displayMenu();
+        scanf("%d",&choice);
+        switch(choice){
+
+            case 0:
+                printf("Enter a value to append onto the Linked List    ");
+                scanf("%d",&nodeValue);
+                addNode(nodeValue);
+                break;
+            case 1:
+                printNodes();
+                break;
+            case 2:
+                return 0;
+        }
+
+    }
 
 
     return 0;
