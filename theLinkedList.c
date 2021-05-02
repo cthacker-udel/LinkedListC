@@ -45,9 +45,24 @@ void printNodes(){
 
 }
 
+void printNodesReverse(){
+
+    struct node *tempNode = HEAD;
+    int index = 0;
+    while(tempNode != NULL){
+        tempNode = tempNode->next;
+        index++;
+    }
+
+    for(int i = index; i >= 0; i--){
+        printf("\n\nNODE %d : %d\n\n",index,tempNode[i].value);
+    }
+
+}
+
 void displayMenu(){
 
-    printf("\n\n~=~=~=MENU~=~=~=\n0)Add node\n1)Print nodes\n2)Exit program\n\n Choice :  ");
+    printf("\n\n~=~=~=MENU~=~=~=\n0)Add node\n1)Print nodes\n2)Print nodes reverse\n3)Exit program\n\n Choice :  ");
 
 }
 
@@ -75,6 +90,9 @@ int main(void){
                 printNodes();
                 break;
             case 2:
+                printNodesReverse();
+                break;
+            case 3:
                 return 0;
         }
 
