@@ -3,6 +3,14 @@
 #include <stdlib.h>
 #include <string.h>
 
+struct node{
+
+    int value;
+
+    struct node *next;
+
+};
+
 
 int main(void){
 
