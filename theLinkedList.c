@@ -34,11 +34,22 @@ void addNode(int value){
 
 }
 
+void printNodes(){
+
+    struct node *tempNode = HEAD;
+    int index = 0;
+    while(tempNode != NULL){
+        printf("\n\nNODE %d : %d\n\n",index++,tempNode->value);
+        tempNode = tempNode->next;
+    }
+
+}
+
 
 int main(void){
 
+    int choice = 0;
 
-    printf("Pushing this code to github");
 
     return 0;
 }
