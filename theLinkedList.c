@@ -133,6 +133,7 @@ void printOnlyOddValue(){
             printf("\n\nNode %d has an odd value of %d\n\n",index,nodeValue);
         }
         placerNode = placerNode->value;
+        index++;
     }
 
 }
