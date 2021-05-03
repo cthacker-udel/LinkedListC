@@ -34,6 +34,24 @@ void addNode(int value){
 
 }
 
+int numberOfNodes(){
+
+    int numberOfNodes = 0;
+    struct node *placerNode = HEAD;
+    while(placerNode != NULL){
+        numberOfNodes++;
+        placerNode = placerNode->next;
+    }
+    return numberOfNodes;
+
+}
+
+void printNumberOfNodes(){
+
+    printf("\n\nThe number of nodes in the list is : %d\n\n",numberOfNodes());
+    
+}
+
 void printNodes(){
 
     struct node *tempNode = HEAD;
@@ -47,15 +65,22 @@ void printNodes(){
 
 void printNodesReverse(){
 
+    int numNodes = numberOfNodes();
+
+    int arr[numNodes];
+
     struct node *tempNode = HEAD;
     int index = 0;
+
     while(tempNode != NULL){
+        arr[index] = tempNode->value;
         tempNode = tempNode->next;
         index++;
     }
 
-    for(int i = index; i >= 0; i--){
-        printf("\n\nNODE %d : %d\n\n",index,tempNode[i].value);
+    int nodeIndex = 0;
+    for(int i = numNodes-1; i >= 0 ; i--){
+        printf("\n\nNODE %d : %d\n\n",nodeIndex++,arr[i]);
     }
 
 }
@@ -132,7 +157,7 @@ void printOnlyOddValue(){
         if(nodeValue % 2 != 0){
             printf("\n\nNode %d has an odd value of %d\n\n",index,nodeValue);
         }
-        placerNode = placerNode->value;
+        placerNode = placerNode->next;
         index++;
     }
 
@@ -168,7 +193,7 @@ void printTailValue(){
 
 void displayMenu(){
 
-    printf("\n\n~=~=~=MENU~=~=~=\n0)Add node\n1)Print nodes\n2)Print nodes reverse\n3)Exit program\n\n Choice :  ");
+    printf("\n\n~=~=~=MENU~=~=~=\n0)Add node\n1)Print nodes\n2)Print nodes reverse\n3)Print number of nodes\n4)Exit program\n\n Choice :  ");
 
 }
 
@@ -199,6 +224,11 @@ int main(void){
                 printNodesReverse();
                 break;
             case 3:
+                printNumberOfNodes();
+                break;
+            case 4:
+                return 0;
+            default:
                 return 0;
         }
 
