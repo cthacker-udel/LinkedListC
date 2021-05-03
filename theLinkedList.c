@@ -37,6 +37,9 @@ void addNode(int value){
 int numberOfNodes(){
 
     int numberOfNodes = 0;
+    if(HEAD == NULL){
+        return 0;
+    }
     struct node *placerNode = HEAD;
     while(placerNode != NULL){
         numberOfNodes++;
@@ -125,6 +128,42 @@ void addTail(int value){
 }
 
 
+void addMiddle(int value){
+
+    int numNodes = numberOfNodes();
+
+    int middle = numNodes / 2;
+
+    if(numNodes == 0){
+        addNode(value);
+        return;
+    }
+    if(numNodes == 1){
+        addNode(value);
+        return;
+    }
+
+    struct node *prevNode;
+    struct node *currNode = HEAD;
+
+    int index = 0;
+
+    while(currNode != NULL){
+        prevNode = currNode;
+        currNode = currNode->next;
+        index++;
+        if(index == middle){
+            struct node *newNode = (struct node *)malloc(sizeof(struct node));
+            newNode->value = value;
+            newNode->next = currNode;
+            prevNode->next = newNode;
+            break;
+        }
+    }
+
+}
+
+
 
 void printOnlyEvenValue(){
 
@@ -193,7 +232,7 @@ void printTailValue(){
 
 void displayMenu(){
 
-    printf("\n\n~=~=~=MENU~=~=~=\n0)Add node\n1)Print nodes\n2)Print nodes reverse\n3)Print number of nodes\n4)Exit program\n\n Choice :  ");
+    printf("\n\n~=~=~=MENU~=~=~=\n0)Add node\n1)Print nodes\n2)Print nodes reverse\n3)Print number of nodes\n4)Add node middle\n5)Exit program\n\n Choice :  ");
 
 }
 
@@ -227,6 +266,11 @@ int main(void){
                 printNumberOfNodes();
                 break;
             case 4:
+                printf("Enter a value for the node to be added into the middle of the linked list     ");
+                scanf("%d",&nodeValue);
+                addMiddle(nodeValue);
+                break;
+            case 5:
                 return 0;
             default:
                 return 0;
