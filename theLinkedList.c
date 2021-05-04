@@ -290,13 +290,31 @@ void deleteMiddle(void){
 
 }
 
+void searchForNumber(int numSearch){
+
+    struct node *currNode = HEAD;
+
+    int index = 0;
+
+    while(currNode != NULL){
+        if(currNode->value == numSearch){
+            printf("\n\nFound the number %d at Node %d\n\n",numSearch,index);
+            return;
+        }
+        currNode = currNode->next;
+        index++;
+    }
+    printf("The number %d does not exist in the Linked List",numSearch);
+
+}
+
 
 
 
 
 void displayMenu(){
 
-    printf("\n\n~=~=~=MENU~=~=~=\n0)Add node\n1)Print nodes\n2)Print nodes reverse\n3)Print number of nodes\n4)Add node middle\n5)Delete HEAD\n6)Delete TAIL\n7)Delete Middle\n8)Exit program\n\n Choice :  ");
+    printf("\n\n~=~=~=MENU~=~=~=\n0)Add node\n1)Print nodes\n2)Print nodes reverse\n3)Print number of nodes\n4)Add node middle\n5)Delete HEAD\n6)Delete TAIL\n7)Delete Middle\n8)Search for Number in Linked List\n9)Exit program\n\n Choice :  ");
 
 }
 
@@ -342,6 +360,11 @@ int main(void){
                 break;
             case 7:
                 deleteMiddle();
+                break;
+            case 8:
+                printf("Enter a value to search the linked list for :   ");
+                scanf("%d",&nodeValue);
+                searchForNumber(nodeValue);
                 break;
             default:
                 return 0;
