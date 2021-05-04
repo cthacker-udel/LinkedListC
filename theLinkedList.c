@@ -226,6 +226,11 @@ void printTailValue(){
 
 }
 
+void deleteHead(){
+
+
+}
+
 
 
 
