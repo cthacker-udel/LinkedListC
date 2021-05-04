@@ -14,7 +14,29 @@ struct node{
 
 
 struct node *HEAD = NULL;
-struct node *TEMP = NULL;
+struct node *TAIL = NULL;
+
+
+void addNode(int value){
+
+    struct node *newNode = (struct node *)malloc(sizeof(struct node));
+    newNode->value = value;
+    if(HEAD == NULL && TAIL == NULL){
+        HEAD = newNode;
+        TAIL = newNode;
+    }
+    else{
+        struct node *currNode = HEAD;
+        while(currNode->next != NULL){
+            currNode = currNode->next;
+        }
+        currNode->next = newNode;
+        newNode->previous = currNode;
+        newNode->next = NULL;
+        TAIL = newNode;
+    }
+
+}
 
 
 void printNodes(){
