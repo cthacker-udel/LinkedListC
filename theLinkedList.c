@@ -149,9 +149,6 @@ void addMiddle(int value){
     int index = 0;
 
     while(currNode != NULL){
-        prevNode = currNode;
-        currNode = currNode->next;
-        index++;
         if(index == middle){
             struct node *newNode = (struct node *)malloc(sizeof(struct node));
             newNode->value = value;
@@ -159,6 +156,9 @@ void addMiddle(int value){
             prevNode->next = newNode;
             break;
         }
+        prevNode = currNode;
+        currNode = currNode->next;
+        index++;
     }
 
 }
@@ -263,13 +263,40 @@ void deleteTail(void){
 
 }
 
+void deleteMiddle(void){
+
+    int numNodes = numberOfNodes();
+    if(numNodes == 0){
+        return;
+    }
+    else if(numNodes == 1){
+        HEAD = NULL;
+        TAIL = NULL;
+    }
+    else{
+        int middle = numNodes / 2;
+        struct node *tempNode = HEAD;
+        struct node *prevNode;
+        int currIndex = 0;
+        while(tempNode != NULL){
+            if(currIndex == middle){
+                prevNode->next = tempNode->next;
+                tempNode = NULL;
+                return;
+            }
+        }
+        return;
+    }
+
+}
+
 
 
 
 
 void displayMenu(){
 
-    printf("\n\n~=~=~=MENU~=~=~=\n0)Add node\n1)Print nodes\n2)Print nodes reverse\n3)Print number of nodes\n4)Add node middle\n5)Exit program\n\n Choice :  ");
+    printf("\n\n~=~=~=MENU~=~=~=\n0)Add node\n1)Print nodes\n2)Print nodes reverse\n3)Print number of nodes\n4)Add node middle\n5)Delete HEAD\n6)Delete TAIL\n7)Delete Middle\n8)Exit program\n\n Choice :  ");
 
 }
 
@@ -308,7 +335,14 @@ int main(void){
                 addMiddle(nodeValue);
                 break;
             case 5:
-                return 0;
+                deleteHead();
+                break;
+            case 6:
+                deleteTail();
+                break;
+            case 7:
+                deleteMiddle();
+                break;
             default:
                 return 0;
         }
