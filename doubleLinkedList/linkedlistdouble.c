@@ -24,6 +24,8 @@ void addNode(int value){
     if(HEAD == NULL && TAIL == NULL){
         HEAD = newNode;
         TAIL = newNode;
+        HEAD->next = NULL;
+        TAIL->next = NULL;
     }
     else{
         struct node *currNode = HEAD;
