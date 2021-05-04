@@ -244,6 +244,25 @@ void deleteHead(void){
 
 }
 
+void deleteTail(void){
+
+    if(TAIL == NULL){
+        return;
+    }
+    else{
+        struct node *tempNode = HEAD;
+        struct node *prevNode;
+        while(tempNode->next != NULL){
+            prevNode = tempNode;
+            tempNode = tempNode->next;
+        }
+        TAIL = NULL;
+        prevNode->next = NULL;
+        TAIL = prevNode;
+    }
+
+}
+
 
 
 
