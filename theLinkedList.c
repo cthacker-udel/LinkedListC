@@ -226,8 +226,21 @@ void printTailValue(){
 
 }
 
-void deleteHead(){
+void deleteHead(void){
 
+    if(HEAD == NULL){
+        return;
+    }
+    else{
+        if(numberOfNodes() == 1){
+            HEAD = NULL;
+        }
+        else{
+            struct node *tempNode = HEAD->next;
+            HEAD = NULL;
+            HEAD = tempNode;
+        }
+    }
 
 }
 
