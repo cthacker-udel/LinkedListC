@@ -38,8 +38,21 @@ void addNode(int value){
 
 }
 
+void displayList(){
 
-void printNodes(){
+    int index = 0;
+    struct node *currNode = HEAD;
+
+    printf("\n\n");
+    while(currNode != NULL){
+        printf("\nNode %d : %d\n",index++,currNode->value);
+        currNode = currNode->next;
+    }
+
+}
+
+
+void printNumNodes(){
 
     printf("\nThe number of nodes is : %d\n",numberOfNodes());
 
@@ -61,7 +74,7 @@ int numberOfNodes(){
 
 void printMenu(){
 
-    printf("\n~=~=~=MENU~=~=~=\n0)Print nodes\n1)Exit Program");
+    printf("\n~=~=~=MENU~=~=~=\n0)Print nodes\n1)Add Node\n2)Print List\n3)Exit Program");
 
 }
 
@@ -78,8 +91,20 @@ int main(void){
         switch(choice){
 
             case 0:
-                print
-
+                printNumNodes();
+                break;
+            case 1:
+                printf("\n\nEnter the value to append to the list :     ");
+                scanf("%d",&nodeValue);
+                addNode(nodeValue);
+                break;
+            case 2:
+                displayList();
+                break;
+            case 3:
+                return 0;
+            default:
+                return 0;
         }
 
 
