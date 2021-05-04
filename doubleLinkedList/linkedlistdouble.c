@@ -25,7 +25,9 @@ void addNode(int value){
         HEAD = newNode;
         TAIL = newNode;
         HEAD->next = NULL;
+        HEAD->previous = NULL;
         TAIL->next = NULL;
+        TAIL->previous = NULL;
     }
     else{
         struct node *currNode = HEAD;
@@ -54,6 +56,18 @@ void displayList(){
 }
 
 
+void displayListReverse(){
+
+    int index = 0;
+    struct node *currNode = TAIL;
+    while(currNode != NULL){
+        printf("\n\nNODE %d : %d\n",index,currNode->value);
+        currNode = currNode->previous;
+    }
+
+}
+
+
 void printNumNodes(){
 
     printf("\nThe number of nodes is : %d\n",numberOfNodes());
@@ -76,7 +90,7 @@ int numberOfNodes(){
 
 void printMenu(){
 
-    printf("\n~=~=~=MENU~=~=~=\n0)Print nodes\n1)Add Node\n2)Print List\n3)Exit Program");
+    printf("\n~=~=~=MENU~=~=~=\n0)Print nodes\n1)Add Node\n2)Print List\n3)Print List Reverse\n4)Exit Program");
 
 }
 
@@ -104,7 +118,10 @@ int main(void){
                 displayList();
                 break;
             case 3:
-                return 0;
+                displayListReverse();
+                break;
+            case 4:
+                break;
             default:
                 return 0;
         }
