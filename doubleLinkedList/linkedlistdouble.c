@@ -132,6 +132,23 @@ void deleteHead(){
 }
 
 
+void deleteTail(){
+
+    int numNodes = numberOfNodes();
+    if(numNodes == 1){
+        HEAD = NULL;
+        TAIL = NULL;
+    }
+    else{
+        struct node *tempNode = TAIL->previous;
+        tempNode->next = NULL;
+        TAIL = NULL;
+        TAIL = tempNode;
+    }
+
+}
+
+
 void insertMiddle(int value){
 
     int numNode = numberOfNodes();
