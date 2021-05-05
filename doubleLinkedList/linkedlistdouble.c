@@ -42,6 +42,28 @@ void addNode(int value){
 
 }
 
+
+void insertHead(int value){
+
+    struct node *newNode = (struct node *)malloc(sizeof(struct node));
+    newNode->value = value;
+    HEAD->previous = newNode;
+    newNode->previous = NULL;
+    newNode->next = HEAD;
+    HEAD = newNode;
+
+}
+
+void insertTail(int value){
+
+    struct node *newNode = (struct node *)malloc(sizeof(struct node));
+    newNode->previous = TAIL;
+    TAIL->next = newNode;
+    newNode->next = NULL;
+    TAIL = newNode;
+
+}
+
 void displayList(){
 
     int index = 0;
@@ -63,6 +85,7 @@ void displayListReverse(){
     while(currNode != NULL){
         printf("\n\nNODE %d : %d\n",index,currNode->value);
         currNode = currNode->previous;
+        index++;
     }
 
 }
@@ -90,7 +113,7 @@ int numberOfNodes(){
 
 void printMenu(){
 
-    printf("\n~=~=~=MENU~=~=~=\n0)Print nodes\n1)Add Node\n2)Print List\n3)Print List Reverse\n4)Exit Program");
+    printf("\n~=~=~=MENU~=~=~=\n0)Print nodes\n1)Add Node\n2)Print List\n3)Print List Reverse\n4)Insert Head\n5)Insert Tail\n6)Exit Program");
 
 }
 
@@ -121,6 +144,14 @@ int main(void){
                 displayListReverse();
                 break;
             case 4:
+                printf("\n\nEnter the value to append to the front of the list :      ");
+                scanf("%d",&nodeValue);
+                insertHead(nodeValue);
+                break;
+            case 5:
+                printf("\n\nEnter the value to append to the end of the list :     ");
+                scanf("%d",&nodeValue);
+                insertTail(nodeValue);
                 break;
             default:
                 return 0;
