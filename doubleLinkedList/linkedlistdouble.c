@@ -54,6 +54,10 @@ void addNode(int value){
 
 void insertHead(int value){
 
+    if(HEAD == NULL){
+        addNode(value);
+    }
+
     struct node *newNode = (struct node *)malloc(sizeof(struct node));
     newNode->value = value;
     HEAD->previous = newNode;
@@ -64,6 +68,10 @@ void insertHead(int value){
 }
 
 void insertTail(int value){
+
+    if(TAIL == NULL){
+        addNode(value);
+    }
 
     struct node *newNode = (struct node *)malloc(sizeof(struct node));
     newNode->previous = TAIL;
