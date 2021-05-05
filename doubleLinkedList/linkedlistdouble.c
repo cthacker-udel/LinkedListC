@@ -3,6 +3,15 @@
 #include <stdlib.h>
 #include <string.h>
 
+/*
+
+Prototypes
+
+*/
+
+int numberOfNodes(void);
+
+
 
 struct node{
 
@@ -61,6 +70,42 @@ void insertTail(int value){
     TAIL->next = newNode;
     newNode->next = NULL;
     TAIL = newNode;
+
+}
+
+void insertPosition(int index, int value){
+
+    struct node *newNode = (struct node *)malloc(sizeof(struct node));
+
+    newNode->value = value;
+    newNode->next = NULL;
+    newNode->previous = NULL;
+
+    int numNodes = numberOfNodes();
+
+    if(numNodes < index){
+        insertTail(value);
+    }
+    else if(index == 0){
+        insertHead(value);
+    }
+    else{
+        int theIndex = 0;
+        struct node *currNode = HEAD;
+        struct node *prevNode;
+        while(currNode != NULL){
+            prevNode = currNode;
+            currNode = currNode->next;
+            theIndex++;
+            if(theIndex == index){
+                prevNode->next = newNode;
+                currNode->previous = newNode;
+                newNode->next = currNode;
+                newNode->previous = prevNode;
+                break;
+            }
+        }
+    }
 
 }
 
