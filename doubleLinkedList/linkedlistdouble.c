@@ -149,6 +149,40 @@ void deleteTail(){
 }
 
 
+void deleteNode(int index){
+
+    int numNodes = numberOfNodes();
+    if(numNodes == 1){
+        HEAD = NULL;
+        TAIL = NULL;
+    }
+    else if(index == 0){
+        deleteHead();
+    }
+    else if(index > numNodes){
+        deleteTail();
+    }
+    else{
+        int nodeIndex = 0;
+        struct node *currNode = HEAD;
+        struct node *prevNode;
+        while(currNode != NULL){
+            prevNode = currNode;
+            currNode = currNode->next;
+            nodeIndex++;
+            if(nodeIndex == index){
+                prevNode = currNode->next;
+                currNode->previous - NULL;
+                currNode->next = NULL;
+                currNode = NULL;
+            }
+        }
+    }
+
+
+}
+
+
 void insertMiddle(int value){
 
     int numNode = numberOfNodes();
