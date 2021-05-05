@@ -117,6 +117,21 @@ void insertPosition(int index, int value){
 
 }
 
+void deleteHead(){
+
+    int numNodes = numberOfNodes();
+    if(numNodes == 1){
+        HEAD = NULL;
+        TAIL = NULL;
+    }
+    else{
+        struct node *tempNode = HEAD->next;
+        tempNode->previous = NULL;
+        HEAD = tempNode;
+    }
+}
+
+
 void insertMiddle(int value){
 
     int numNode = numberOfNodes();
