@@ -117,6 +117,37 @@ void insertPosition(int index, int value){
 
 }
 
+void insertMiddle(int value){
+
+    int numNode = numberOfNodes();
+    int middle = numNode / 2;
+    if(numNode <= 1){
+        addNode(value);
+    }
+    else{
+        int index = 0;
+        struct node *currNode = HEAD;
+        struct node *prevNode;
+        struct node *newNode = (struct node *)malloc(sizeof(struct node));
+        newNode->value = value;
+        newNode->next = NULL;
+        newNode->previous = NULL;
+        while(currNode != NULL){
+            prevNode = currNode;
+            currNode = currNode->next;
+            index++;
+            if(index == middle){
+                prevNode->next = newNode;
+                currNode->previous = newNode;
+                newNode->previous = prevNode;
+                newNode->next = currNode;
+                break;
+            }
+        }
+    }
+
+}
+
 void displayList(){
 
     int index = 0;
