@@ -74,9 +74,10 @@ void insertTail(int value){
     }
 
     struct node *newNode = (struct node *)malloc(sizeof(struct node));
+    newNode->value = value;
     newNode->previous = TAIL;
-    TAIL->next = newNode;
     newNode->next = NULL;
+    TAIL->next = newNode;
     TAIL = newNode;
 
 }
@@ -172,7 +173,7 @@ void deleteNode(int index){
             nodeIndex++;
             if(nodeIndex == index){
                 prevNode = currNode->next;
-                currNode->previous - NULL;
+                currNode->previous = NULL;
                 currNode->next = NULL;
                 currNode = NULL;
             }
@@ -247,6 +248,67 @@ void printNumNodes(){
 
 }
 
+int listMax(){
+
+    int numNodes = numberOfNodes();
+    if(numNodes == 0){
+        printf("\nMax number unavailable, add a node to access the maximum value\n");
+        return 0;
+    }
+    else if(numNodes == 1){
+        return HEAD->value;
+    }
+    else{
+        int max = 0;
+        struct node *currNode = HEAD;
+        while(currNode != NULL){
+            if(currNode->value > max){
+                max = currNode->value;
+            }
+            currNode = currNode->next;
+        }
+        return max;
+    }
+
+}
+
+int listMin(){
+
+    int numNodes = numberOfNodes();
+    if(numNodes == 0){
+        printf("\n\nMin number unavailable, please add a node to begin calculating the minimun");
+        return 0;
+    }
+    else if(numNodes == 1){
+        return HEAD->value;
+    }
+    else{
+        int currNumber = HEAD->value;
+        struct node *currNode = HEAD;
+        while(currNode != NULL){
+            int currVal = currNode->value;
+            if(currVal < currNumber){
+                currNumber = currVal;
+            }
+            currNode = currNode->next;
+        }
+        return currNumber;
+    }
+
+}
+
+void printMinNumber(){
+
+    printf("\n\nThe min number in the linked list is : %d\n\n",listMin());
+
+}
+
+void printMaxNumber(){
+
+    printf("\n\nThe max number in the linked list is : %d\n\n",listMax());
+
+}
+
 
 int numberOfNodes(){
 
@@ -263,7 +325,7 @@ int numberOfNodes(){
 
 void printMenu(){
 
-    printf("\n~=~=~=MENU~=~=~=\n0)Print nodes\n1)Add Node\n2)Print List\n3)Print List Reverse\n4)Insert Head\n5)Insert Tail\n6)Exit Program");
+    printf("\n~=~=~=MENU~=~=~=\n0)Print number of nodes\n1)Add Node\n2)Print List\n3)Print List Reverse\n4)Insert Head\n5)Insert Tail\n6)Print Max\n7)Print min\n8)Exit Program     ");
 
 }
 
@@ -303,6 +365,14 @@ int main(void){
                 scanf("%d",&nodeValue);
                 insertTail(nodeValue);
                 break;
+            case 6:
+                printMaxNumber();
+                break;
+            case 7:
+                printMinNumber();
+                break;
+            case 8:
+                return 0;
             default:
                 return 0;
         }
