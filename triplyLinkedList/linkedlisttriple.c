@@ -158,6 +158,27 @@ void insertNode(int value){
     }
 }
 
+void deleteHead(){
+
+    if(HEAD == NULL){
+        return;
+    }
+    else if(numNodes() == 1){
+        HEAD = NULL;
+        TAIL = NULL;
+        return;
+    }
+    else{
+        struct node *currNode = HEAD->next;
+        HEAD->next = NULL;
+        HEAD = NULL;
+        currNode->previous = NULL;
+        HEAD = currNode;
+    }
+
+}
+
+
 void printMenu(){
 
     printf("\n~=~=~=MENU~=~=~=\n\n0)Add node\n1)Add head\n2)Add tail");
