@@ -200,6 +200,39 @@ void deleteTail(){
 }
 
 
+void deleteMiddle(){
+
+    if(HEAD == NULL){
+        return;
+    }
+    else if(numNodes() == 1){
+        HEAD = NULL;
+        TAIL = NULL;
+        return;
+    }
+    else{
+
+        int middle = numNodes() / 2;
+        int index = 0;
+        struct node *currNode = HEAD;
+        struct node *prevNode;
+        while(currNode != NULL){
+            prevNode = currNode;
+            currNode = currNode->next;
+            index++;
+            if(index == middle){
+                prevNode->next = currNode->next;
+                currNode->next->previous = prevNode;
+                currNode->previous = NULL;
+                currNode->next = NULL;
+                currNode = NULL;
+            }
+        }
+
+    }
+}
+
+
 void printMenu(){
 
     printf("\n~=~=~=MENU~=~=~=\n\n0)Add node\n1)Add head\n2)Add tail");
