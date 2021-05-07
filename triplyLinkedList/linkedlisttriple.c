@@ -40,6 +40,19 @@ void addNode(int value){
 
 } 
 
+
+int numNodes(){
+
+    int count = 0;
+    struct node *currNode = HEAD;
+    while(currNode != NULL){
+        count++;
+        currNode = currNode->next;
+    }
+    return count;
+
+}
+
 void addHead(int value){
 
     if(HEAD == NULL){
@@ -70,6 +83,39 @@ void addTail(int value){
         newNode->previous = TAIL;
         newNode->next = NULL;
         TAIL = newNode;
+    }
+
+}
+
+void addMiddle(int value){
+
+    int numNode = numNodes();
+
+    if(HEAD == NULL){
+        addNode(value);
+    }
+    else if(numNode < 2){
+        addNode(value);
+    }
+    else{
+
+        struct node *newNode = (struct node *)malloc(sizeof(struct node));
+        newNode->value = value;
+        int middle = numNode / 2;
+        int index = 0;
+        struct node *currNode = HEAD;
+        struct node *prevNode;
+        while(currNode != NULL){
+            prevNode = currNode;
+            currNode = currNode->next;
+            index++;
+            if(index == middle){
+                prevNode->next = newNode;
+                currNode->previous = newNode;
+                return;
+            }
+        }
+
     }
 
 }
