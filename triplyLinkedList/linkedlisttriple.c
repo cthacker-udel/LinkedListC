@@ -112,12 +112,50 @@ void addMiddle(int value){
             if(index == middle){
                 prevNode->next = newNode;
                 currNode->previous = newNode;
+                newNode->next = currNode;
+                newNode->previous = prevNode;
                 return;
             }
         }
 
     }
 
+}
+
+void insertNode(int value){
+
+    int index = 0;
+    printf("\nEnter an index to place the node\n");
+    scanf("%d",&index);
+    int numNode = numNodes();
+    if(numNodes == 0 || HEAD == NULL){
+        addNode(value);
+    }
+    else if(index == 0){
+        addHead(value);
+    }
+    else if(index >= numNode){
+        addTail(value);
+    }
+    else{
+        int currIndex = 0;
+        struct node *currNode = HEAD;
+        struct node *prevNode;
+        struct node *newNode = (struct node *)malloc(sizeof(struct node));
+        newNode->value = value;
+        while(currNode != NULL){
+            prevNode = currNode;
+            currNode = currNode->next;
+            currIndex++;
+            if(currIndex == index){
+                prevNode->next = newNode;
+                currNode->previous = newNode;
+                newNode->previous = prevNode;
+                newNode->next = currNode;
+                return;
+            }
+        }
+    }
 }
 
 void printMenu(){
