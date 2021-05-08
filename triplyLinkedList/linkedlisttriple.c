@@ -233,10 +233,24 @@ void deleteMiddle(){
 }
 
 
+void printList(){
+
+    struct node *currNode = HEAD;
+
+    int currIndex = 0;
+
+    while(currNode != NULL){
+        printf("\n\nNODE %d : %d",currIndex,currNode->value);
+        currNode = currNode->next;
+    }
+
+}
+
+
 void printMenu(){
 
-    printf("\n~=~=~=MENU~=~=~=\n\n0)Add node\n1)Add head\n2)Add tail");
-
+    printf("\n~=~=~=MENU~=~=~=\n\n0)Add node\n1)Add head\n2)Add tail\n3)Add middle\n4)Insert node\n5)Delete head\n6)Delete tail\n7)Delete middle\n8)Exit program");
+    
 }
 
 int main(void){
@@ -264,6 +278,27 @@ int main(void){
                 scanf("%d",&nodevalue);
                 addTail(nodevalue);
                 break;
+            case 3:
+                printf("\nEnter a value to append a new node to the middle of the list with :    ");
+                scanf("%d",&nodevalue);
+                addMiddle(nodevalue);
+                break;
+            case 4:
+                printf("\nEnter a value to insert into the list :  ");
+                scanf("%d",&nodevalue);
+                insertNode(nodevalue);
+                break;
+            case 5:
+                deleteHead();
+                break;
+            case 6:
+                deleteTail();
+                break;
+            case 7:
+                deleteMiddle();
+                break;
+            case 8:
+                return 0;
             default:
                 return 0;
         }
