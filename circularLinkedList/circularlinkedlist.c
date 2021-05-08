@@ -50,7 +50,7 @@ int numNodes(){
     if(HEAD == NULL){
         return 0;
     }
-    else if(HEAD->next = NULL){
+    else if(HEAD->next == NULL){
         return 1;
     }
     else{
@@ -92,9 +92,32 @@ void insertNode(int value){
     struct node *newNode = (struct node *)malloc(sizeof(struct node));
     newNode->value = value;
     int index = 0;
-    printf("\nEnter the index which to place the node   ");
+    printf("\nSecond : Enter the index which to place the node   ");
     scanf("%d",&index);
     int numberOfNodes = numNodes();
+    if(index == 0){
+        insertHead(value);
+    }
+    else if(index >= numberOfNodes){
+        insertTail(value);
+    }
+    else{
+        int currIndex = 0;
+        struct node *currNode = HEAD;
+        struct node *prevNode;
+        while(currNode->next != HEAD){
+            prevNode = currNode;
+            currNode = currNode->next;
+            currIndex++;
+            if(currIndex == index){
+                prevNode->next = newNode;
+                newNode->previous = prevNode;
+                currNode->previous = newNode;
+                newNode->next = currNode;
+                return;
+            }
+        }
+    }
 
 }
 
@@ -129,7 +152,7 @@ void reversePrintList(){
 
 void printMenu(){
 
-    printf("\n\n~=~=~=MENU~=~=~=\n1)Add value to list\n2)Print list\n3)Reverse List Print\n4)Insert head\n5)Insert tail\n6)Exit program");
+    printf("\n\n~=~=~=MENU~=~=~=\n1)Add value to list\n2)Print list\n3)Reverse List Print\n4)Insert head\n5)Insert tail\n6)Insert node at index\n7)Exit program");
 
 }
 
@@ -163,6 +186,11 @@ int main(void){
                 printf("\nEnter the value to add to the end of the list : ");
                 scanf("%d",&nodevalue);
                 insertTail(nodevalue);
+                break;
+            case 6:
+                printf("\nFirst : specify the value to give the node\t");
+                scanf("%d",&nodevalue);
+                insertNode(nodevalue);
                 break;
             default:
                 return 0;
