@@ -38,6 +38,7 @@ void addNode(int value){
         newNode->next = HEAD;
         newNode->previous = TAIL;
         TAIL = newNode;
+        HEAD->previous = TAIL;
     }
 
     return;
@@ -57,10 +58,24 @@ void printList(){
 }
 
 
+void reversePrintList(){
+
+    int nodeNum = 0;
+    struct node *currNode = TAIL;
+    printf("\n\nNODE %d : %d\n",nodeNum++,currNode->value);
+    currNode = currNode->previous;
+    while(currNode != TAIL){
+        printf("\n\nNODE %d : %d\n",nodeNum++,currNode->value);
+        currNode = currNode->previous;
+    }
+
+}
+
+
 
 void printMenu(){
 
-    printf("\n\n~=~=~=MENU~=~=~=\n1)Add value to list\n2)Print list\n3)Exit program");
+    printf("\n\n~=~=~=MENU~=~=~=\n1)Add value to list\n2)Print list\n3)Reverse List Print\n4)Exit program");
 
 }
 
@@ -82,6 +97,11 @@ int main(void){
             case 2:
                 printList();
                 break;
+            case 3:
+                reversePrintList();
+                break;
+            case 4:
+                return 0;
             default:
                 return 0;
         }
