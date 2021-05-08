@@ -54,7 +54,7 @@ int numNodes(){
         return 1;
     }
     else{
-        struct node *currNode = HEAD->next;
+        struct node *currNode = HEAD;
         int count = 1;
         while(currNode->next != HEAD){
             count++;
@@ -123,9 +123,13 @@ void insertNode(int value){
 
 void printList(){
 
+
+    if(HEAD == NULL){
+        return;
+    }
     int nodeNum = 0;
     struct node *currNode = HEAD;
-    printf("\n\nNODE %d : %d",nodeNum++,currNode->value);
+    printf("\n\nNODE %d : %d\n",nodeNum++,currNode->value);
     currNode = currNode->next;
     while(currNode != HEAD){
         printf("\n\nNODE %d : %d",nodeNum++,currNode->value);
@@ -136,11 +140,11 @@ void printList(){
 
 void deleteHead(){
 
-    int numNodes = numNodes();
-    if(numNodes == 0){
+    int numNode = numNodes();
+    if(numNode == 0){
         return;
     }
-    else if(numNodes == 1){
+    else if(numNode == 1){
         HEAD = NULL;
         TAIL = NULL;
     }
@@ -150,6 +154,7 @@ void deleteHead(){
         HEAD = NULL;
         currNode->previous = TAIL;
         TAIL->next = currNode;
+        HEAD = currNode;
 
     }
 
@@ -157,20 +162,20 @@ void deleteHead(){
 
 void deleteTail(){
 
-    int numNodes = numNodes();
-    if(numNodes == 0){
+    int numNode = numNodes();
+    if(numNode == 0){
         return;
     }
-    else if(numNodes == 1){
+    else if(numNode == 1){
         HEAD = NULL;
         TAIL = NULL;
     }
     else{
         struct node *currNode = TAIL->previous;
         TAIL = NULL;
-        HEAD->previous = NULL;
         HEAD->previous = currNode;
         currNode->next = HEAD;
+        TAIL = currNode;
     }
 
 }
@@ -180,6 +185,9 @@ void deleteTail(){
 
 void reversePrintList(){
 
+    if(HEAD == NULL){
+        return;
+    }
     int nodeNum = 0;
     struct node *currNode = TAIL;
     printf("\n\nNODE %d : %d\n",nodeNum++,currNode->value);
@@ -195,7 +203,7 @@ void reversePrintList(){
 
 void printMenu(){
 
-    printf("\n\n~=~=~=MENU~=~=~=\n1)Add value to list\n2)Print list\n3)Reverse List Print\n4)Insert head\n5)Insert tail\n6)Insert node at index\n7)Exit program");
+    printf("\n\n~=~=~=MENU~=~=~=\n1)Add value to list\n2)Print list\n3)Reverse List Print\n4)Insert head\n5)Insert tail\n6)Insert node at index\n7)Delete Head\n8)Delete TailExit program");
 
 }
 
@@ -205,7 +213,8 @@ int main(void){
     int nodevalue = 0;
 
     while(1){
-
+        
+        sleep(2);
         printMenu();
         scanf("%d",&choice);
         switch(choice){
@@ -234,6 +243,12 @@ int main(void){
                 printf("\nFirst : specify the value to give the node\t");
                 scanf("%d",&nodevalue);
                 insertNode(nodevalue);
+                break;
+            case 7:
+                deleteHead();
+                break;
+            case 8:
+                deleteTail();
                 break;
             default:
                 return 0;
