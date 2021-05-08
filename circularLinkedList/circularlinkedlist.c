@@ -44,6 +44,26 @@ void addNode(int value){
     return;
 }
 
+
+int numNodes(){
+
+    if(HEAD == NULL){
+        return 0;
+    }
+    else if(HEAD->next = NULL){
+        return 1;
+    }
+    else{
+        struct node *currNode = HEAD->next;
+        int count = 1;
+        while(currNode->next != HEAD){
+            count++;
+            currNode = currNode->next;
+        }
+        return count;
+    }
+}
+
 void insertHead(int value){
 
     struct node *newNode = (struct node *)malloc(sizeof(struct node));
@@ -64,6 +84,17 @@ void insertTail(int value){
     TAIL->next = newNode;
     TAIL = newNode;
 
+
+}
+
+void insertNode(int value){
+
+    struct node *newNode = (struct node *)malloc(sizeof(struct node));
+    newNode->value = value;
+    int index = 0;
+    printf("\nEnter the index which to place the node   ");
+    scanf("%d",&index);
+    int numberOfNodes = numNodes();
 
 }
 
