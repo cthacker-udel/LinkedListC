@@ -240,16 +240,30 @@ void printList(){
     int currIndex = 0;
 
     while(currNode != NULL){
-        printf("\n\nNODE %d : %d",currIndex,currNode->value);
+        printf("\n\nNODE %d : %d\n\n",currIndex++,currNode->value);
         currNode = currNode->next;
     }
+
+}
+
+void reversePrintList(){
+
+    struct node *currNode = TAIL;
+
+    int currIndex = 0;
+
+    while(currNode != NULL){
+        printf("\n\nNODE %d : %d\n\n",currIndex,currNode->value);
+        currNode = currNode->previous;
+    }
+
 
 }
 
 
 void printMenu(){
 
-    printf("\n~=~=~=MENU~=~=~=\n\n0)Add node\n1)Add head\n2)Add tail\n3)Add middle\n4)Insert node\n5)Delete head\n6)Delete tail\n7)Delete middle\n8)Exit program");
+    printf("\n~=~=~=MENU~=~=~=\n\n0)Add node\n1)Add head\n2)Add tail\n3)Add middle\n4)Insert node\n5)Delete head\n6)Delete tail\n7)Delete middle\n8)Print  list\n9)Reverse print list\n10)Exit program");
     
 }
 
@@ -298,6 +312,12 @@ int main(void){
                 deleteMiddle();
                 break;
             case 8:
+                printList();
+                break;
+            case 9:
+                reversePrintList();
+                break;
+            case 10:
                 return 0;
             default:
                 return 0;
