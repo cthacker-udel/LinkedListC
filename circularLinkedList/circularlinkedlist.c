@@ -46,13 +46,24 @@ void addNode(int value){
 
 void insertHead(int value){
 
-    struct node *currNode = HEAD;
     struct node *newNode = (struct node *)malloc(sizeof(struct node));
     newNode->value = value;
     newNode->previous = TAIL;
     newNode->next = HEAD;
     TAIL->next = newNode;
     HEAD = newNode;
+
+}
+
+void insertTail(int value){
+
+    struct node *newNode = (struct node *)malloc(sizeof(struct node));
+    newNode->value = value;
+    newNode->next = HEAD;
+    newNode->previous = TAIL;
+    TAIL->next = newNode;
+    TAIL = newNode;
+
 
 }
 
@@ -87,7 +98,7 @@ void reversePrintList(){
 
 void printMenu(){
 
-    printf("\n\n~=~=~=MENU~=~=~=\n1)Add value to list\n2)Print list\n3)Reverse List Print\n4)Insert head\n5)Exit program");
+    printf("\n\n~=~=~=MENU~=~=~=\n1)Add value to list\n2)Print list\n3)Reverse List Print\n4)Insert head\n5)Insert tail\n6)Exit program");
 
 }
 
@@ -116,6 +127,11 @@ int main(void){
                 printf("\nEnter the value to add to the list :   ");
                 scanf("%d",&nodevalue);
                 insertHead(nodevalue);
+                break;
+            case 5:
+                printf("\nEnter the value to add to the end of the list : ");
+                scanf("%d",&nodevalue);
+                insertTail(nodevalue);
                 break;
             default:
                 return 0;
