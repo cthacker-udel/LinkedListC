@@ -134,6 +134,30 @@ void printList(){
 
 }
 
+void deleteHead(){
+
+    int numNodes = numNodes();
+    if(numNodes == 0){
+        return;
+    }
+    else if(numNodes == 1){
+        HEAD = NULL;
+        TAIL = NULL;
+    }
+    else{
+
+        struct node *currNode = HEAD->next;
+        HEAD = NULL;
+        currNode->previous = TAIL;
+        TAIL->next = currNode;
+
+    }
+
+
+}
+
+
+
 
 void reversePrintList(){
 
