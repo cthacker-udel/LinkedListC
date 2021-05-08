@@ -5,32 +5,32 @@
 
 
 
-typedef struct{
+struct node{
 
     int value;
-    node *next;
-    node *previous;
+    struct node *next;
+    struct node *previous;
 
-}node;
+};
 
-
-node *HEAD = NULL;
-node *TAIL = NULL;
+struct node *HEAD = NULL;
+struct node *TAIL = NULL;
 
 
 void addNode(int value){
 
-    node *newNode = (node *)malloc(sizeof(node));
+    struct node *newNode = (struct node *)malloc(sizeof(struct node));
     newNode->value = value;
 
-
     if(HEAD == NULL){
-        HEAD->previous = NULL;
+        newNode->next = NULL;
+        newNode->previous = NULL;
         HEAD = newNode;
         TAIL = newNode;
+        TAIL->next = newNode;
     }
     else{
-        node *currNode = HEAD;
+        struct node *currNode = HEAD;
         while(currNode != TAIL){
             currNode = currNode->next;
         }
@@ -43,11 +43,24 @@ void addNode(int value){
     return;
 }
 
+void printList(){
+
+    int nodeNum = 0;
+    struct node *currNode = HEAD;
+    printf("\n\nNODE %d : %d",nodeNum++,currNode->value);
+    currNode = currNode->next;
+    while(currNode != HEAD){
+        printf("\n\nNODE %d : %d",nodeNum++,currNode->value);
+        currNode = currNode->next;
+    }
+
+}
+
 
 
 void printMenu(){
 
-    printf("\n\n~=~=~=MENU~=~=~=\n1)Add value to list\n2)Exit program");
+    printf("\n\n~=~=~=MENU~=~=~=\n1)Add value to list\n2)Print list\n3)Exit program");
 
 }
 
@@ -67,7 +80,8 @@ int main(void){
                 addNode(nodevalue);
                 break;
             case 2:
-                return 0;
+                printList();
+                break;
             default:
                 return 0;
         }
