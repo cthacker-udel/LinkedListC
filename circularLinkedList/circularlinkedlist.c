@@ -63,7 +63,7 @@ int main(void){
         switch(choice){
             case 1:
                 printf("\nEnter value to add to the list    ");
-                scasnf("%d",&nodevalue);
+                scanf("%d",&nodevalue);
                 addNode(nodevalue);
                 break;
             case 2:
