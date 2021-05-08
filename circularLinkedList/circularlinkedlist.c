@@ -153,6 +153,25 @@ void deleteHead(){
 
     }
 
+}
+
+void deleteTail(){
+
+    int numNodes = numNodes();
+    if(numNodes == 0){
+        return;
+    }
+    else if(numNodes == 1){
+        HEAD = NULL;
+        TAIL = NULL;
+    }
+    else{
+        struct node *currNode = TAIL->previous;
+        TAIL = NULL;
+        HEAD->previous = NULL;
+        HEAD->previous = currNode;
+        currNode->next = HEAD;
+    }
 
 }
 
