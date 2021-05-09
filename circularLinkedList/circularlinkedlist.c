@@ -105,7 +105,7 @@ void insertNode(int value){
         int currIndex = 0;
         struct node *currNode = HEAD;
         struct node *prevNode;
-        while(currNode->next != HEAD){
+        do{
             prevNode = currNode;
             currNode = currNode->next;
             currIndex++;
@@ -116,7 +116,7 @@ void insertNode(int value){
                 newNode->next = currNode;
                 return;
             }
-        }
+        }while(currNode != HEAD);
     }
 
 }
