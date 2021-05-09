@@ -130,13 +130,12 @@ void printList(){
     }
     int nodeNum = 0;
     struct node *currNode = HEAD;
-    printf("\n\nNODE %d : %d\n",nodeNum++,currNode->value);
-    currNode = currNode->next;
-    while(currNode != HEAD){
-        printf("\n\nNODE %d : %d",nodeNum++,currNode->value);
+    do{
+        printf("\n\nNODE %d : %d\n",nodeNum,currNode->value);
+        nodeNum++;
         currNode = currNode->next;
-    }
 
+    }while(currNode != HEAD);
 }
 
 void deleteHead(){
