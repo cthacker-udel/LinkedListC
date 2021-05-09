@@ -125,6 +125,7 @@ void printList(){
 
 
     if(HEAD == NULL){
+        printf("\n\n----NO NODES AVAILABLE----\n\n");
         return;
     }
     int nodeNum = 0;
@@ -241,7 +242,7 @@ void reversePrintList(){
 
 void printMenu(){
 
-    printf("\n\n~=~=~=MENU~=~=~=\n1)Add value to list\n2)Print list\n3)Reverse List Print\n4)Insert head\n5)Insert tail\n6)Insert node at index\n7)Delete Head\n8)Delete TailExit program");
+    printf("\n\n~=~=~=MENU~=~=~=\n1)Add value to list\n2)Print list\n3)Reverse List Print\n4)Insert head\n5)Insert tail\n6)Insert node at index\n7)Delete Head\n8)Delete Tail\n9)Delete node by index\n10)Exit program      ");
 
 }
 
@@ -252,7 +253,6 @@ int main(void){
 
     while(1){
         
-        sleep(2);
         printMenu();
         scanf("%d",&choice);
         switch(choice){
@@ -287,6 +287,9 @@ int main(void){
                 break;
             case 8:
                 deleteTail();
+                break;
+            case 9:
+                deleteNodeIndex();
                 break;
             default:
                 return 0;
