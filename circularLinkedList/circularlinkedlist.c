@@ -55,13 +55,19 @@ int numNodes(){
     }
     else{
         struct node *currNode = HEAD;
-        int count = 1;
-        while(currNode->next != HEAD){
+        int count = 0;
+        do{
             count++;
             currNode = currNode->next;
-        }
+        }while(currNode != HEAD);
         return count;
     }
+}
+
+void printNumberOfNodes(){
+
+    printf("\n\nNUMBER OF NODES : %d\n\n",numNodes());
+
 }
 
 void insertHead(int value){
@@ -282,7 +288,7 @@ void reversePrintList(){
 
 void printMenu(){
 
-    printf("\n\n~=~=~=MENU~=~=~=\n1)Add value to list\n2)Print list\n3)Reverse List Print\n4)Insert head\n5)Insert tail\n6)Insert node at index\n7)Delete Head\n8)Delete Tail\n9)Delete node by index\n10)Search value in list\n11)Exit program      ");
+    printf("\n\n~=~=~=MENU~=~=~=\n1)Add value to list\n2)Print list\n3)Reverse List Print\n4)Insert head\n5)Insert tail\n6)Insert node at index\n7)Delete Head\n8)Delete Tail\n9)Delete node by index\n10)Search value in list\n11)Print number of nodes\n12)Exit program      ");
 
 }
 
@@ -335,6 +341,9 @@ int main(void){
                 printf("\nEnter the value to search for in the list, index will be outputted\n");
                 scanf("%d",&nodevalue);
                 searchValue(nodevalue);
+                break;
+            case 11:
+                printNumberOfNodes();
                 break;
             default:
                 return 0;
