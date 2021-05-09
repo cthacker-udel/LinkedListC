@@ -199,7 +199,7 @@ void deleteNodeIndex(){
         struct node *prevNode;
         struct node *forwardNode;
         int currIndex = 0;
-        while(currNode->next != HEAD){
+        do{
             prevNode = currNode;
             currNode = currNode->next;
             forwardNode = currNode->next;
@@ -213,8 +213,49 @@ void deleteNodeIndex(){
                 forwardNode->previous = prevNode;
                 return;
             }
-        }
+        }while(currNode != HEAD);
 
+    }
+
+}
+
+
+void searchValue(int value){
+
+    int numOfNodes = numNodes();
+    int index = 0;
+    int found = 0;
+    if(numNodes == 0){
+        printf("\n\nSEARCH UNAVAILABLE - LIST EMPTY\n\n");
+    }
+    else if(numNodes == 1){
+        if(HEAD->value == value){
+            printf("\n\nELEMENT FOUND AT INDEX 0\n\n");
+        }
+        else{
+            printf("\n\nELEMENT NOT IN LIST\n\n");
+        }
+    }
+    else{
+        struct node *currNode = HEAD;
+
+        do{
+            
+            if(currNode->value = value){
+                found = 1;
+                break;
+            }
+            currNode = currNode->next;
+            index++;
+
+        }while(currNode != HEAD);
+
+        if(found){
+            printf("\n\nELEMENT FOUND AT INDEX %d\n\n",index);
+        }
+        else{
+            printf("\n\nELEMENT NOT IN LIST\n\n");
+        }
     }
 
 }
@@ -242,7 +283,7 @@ void reversePrintList(){
 
 void printMenu(){
 
-    printf("\n\n~=~=~=MENU~=~=~=\n1)Add value to list\n2)Print list\n3)Reverse List Print\n4)Insert head\n5)Insert tail\n6)Insert node at index\n7)Delete Head\n8)Delete Tail\n9)Delete node by index\n10)Exit program      ");
+    printf("\n\n~=~=~=MENU~=~=~=\n1)Add value to list\n2)Print list\n3)Reverse List Print\n4)Insert head\n5)Insert tail\n6)Insert node at index\n7)Delete Head\n8)Delete Tail\n9)Delete node by index\n10)Search value in list\n11)Exit program      ");
 
 }
 
@@ -290,6 +331,11 @@ int main(void){
                 break;
             case 9:
                 deleteNodeIndex();
+                break;
+            case 10:
+                printf("\nEnter the value to search for in the list, index will be outputted\n");
+                scanf("%d",&nodevalue);
+                searchValue(nodevalue);
                 break;
             default:
                 return 0;
