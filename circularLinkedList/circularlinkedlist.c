@@ -180,6 +180,44 @@ void deleteTail(){
 
 }
 
+void deleteNodeIndex(){
+
+    int index = 0;
+    printf("\nEnter the index of the node to delete\n");
+    scanf("%d",&index);
+    int numOfNodes = numNodes();
+    if(index == 0){
+        deleteHead();
+    }
+    else if(index >= numOfNodes-1){
+        deleteTail();
+    }
+    else{
+
+        struct node *currNode = HEAD;
+        struct node *prevNode;
+        struct node *forwardNode;
+        int currIndex = 0;
+        while(currNode->next != HEAD){
+            prevNode = currNode;
+            currNode = currNode->next;
+            forwardNode = currNode->next;
+            currIndex++;
+            if(currIndex == index){
+                currNode->previous = NULL;
+                currNode->next = NULL;
+                currNode = NULL;
+
+                prevNode->next = forwardNode;
+                forwardNode->previous = prevNode;
+                return;
+            }
+        }
+
+    }
+
+}
+
 
 
 
